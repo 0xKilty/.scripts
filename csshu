@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ssh $CSU_EID@$(curl --silent https://cs.colostate.edu/~info/machines | grep $(curl --silent https://www.cs.colostate.edu/machinestats/ | grep -E '<td>[a-z]+</td>' | sed 's/^[[:space:]]*//g' | sed -e 's/<[^>]*>//g' | head -n 10 | sed ':a;N;$!ba;s/\n/\\|/g') | fzf | awk '{print $1}').cs.colostate.edu
+

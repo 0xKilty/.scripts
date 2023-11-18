@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Ctrl + r is great but outdated
+history -w
+eval $(sort ${HOME}/.bash_history | uniq | fzf)
