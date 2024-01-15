@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: ship <dir>"
+	exit
+elif [ ! -d $1 ]; then
+	echo "Could not find $1"
+	exit
+fi
+
+tar_name="$1.tar.gz.gpg"
+
+box $1
+echo "rclone copy $tar_name mega_crypt:"
+rclone copy $tar_name mega_crypt:
