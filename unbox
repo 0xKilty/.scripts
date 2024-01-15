@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: unbox <dir>"
+	exit
+elif [ ! -e $1 ]; then
+	echo "Could not find $1"
+	exit
+fi
+
+gpg $1
+filename="$1"
+base_filename="${filename%.*}"
+tar -xzvf $base_filename
+rm $filename $base_filename

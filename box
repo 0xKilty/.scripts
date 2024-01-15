@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: box <dir>"
+	exit
+elif [ ! -d $1 ]; then
+	echo "Could not find $1"
+	exit
+fi
+
+tar -czvf $1.tar.gz $1
+gpg -c --no-symkey-cache --cipher-algo AES256 $1.tar.gz
+rm $1.tar.gz

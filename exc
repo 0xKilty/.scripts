@@ -1,0 +1,18 @@
+#!/bin/bash
+
+base=${1%.*}
+ext=${1##*.}
+
+compiler="g++"
+if [ $ext = "c" ]; then
+    compiler="gcc"
+fi
+
+command="$compiler $(pwd)/$1 -o $base -Wall && time ./$base"
+echo $command
+shift
+for arg in "$@"; do
+    command+=" $arg"
+done
+echo $command
+$command
